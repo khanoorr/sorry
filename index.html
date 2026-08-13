@@ -2,95 +2,387 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0910">
 <title>For Anushka ♡</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:'DM Sans',sans-serif}
-body{background:#0c0a10;color:#fff;overflow:hidden}
-.bg{position:fixed;inset:0;background:
-radial-gradient(circle at 20% 20%,#7b365e55,transparent 32%),
-radial-gradient(circle at 80% 70%,#47357a55,transparent 35%),
-linear-gradient(135deg,#110b14,#090a12 55%,#120c17)}
-.noise{position:fixed;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.wrap{position:relative;min-height:100vh;display:grid;place-items:center;padding:22px}
-.card{width:min(510px,94vw);text-align:center;padding:42px 30px 30px;border:1px solid #ffffff18;border-radius:30px;background:#ffffff09;backdrop-filter:blur(22px);box-shadow:0 30px 100px #0008}
-.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#d7a7c4;margin-bottom:22px}
-h1{font:700 clamp(42px,11vw,68px)/.95 'Playfair Display',serif;margin:0}
-h1 span{font-style:italic;color:#eab4d0}
-.sub{color:#bcb5c2;line-height:1.65;margin:18px auto 28px;max-width:380px}
-.scene{min-height:215px;display:flex;flex-direction:column;justify-content:center}
-.line{font-size:13px;color:#9d96a4;margin:8px 0;opacity:0;transform:translateY(7px);transition:.5s}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+:root{
+  --bg:#0b0910;
+  --muted:#aaa3b2;
+  --soft:#e8bfd3;
+  --accent:#f3c7dc;
+  --accent2:#cfa0ba;
+  --glass:rgba(255,255,255,.075);
+  --border:rgba(255,255,255,.13);
+}
+
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{
+  margin:0;
+  min-height:100svh;
+  font-family:'DM Sans',system-ui,sans-serif;
+  color:#fff;
+  overflow:hidden;
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+button{font:inherit;-webkit-tap-highlight-color:transparent}
+
+.bg{
+  position:fixed;
+  inset:-20%;
+  z-index:-3;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(137,53,104,.30),transparent 28%),
+    radial-gradient(circle at 85% 75%,rgba(77,58,137,.26),transparent 30%),
+    radial-gradient(circle at 50% 110%,rgba(217,116,165,.12),transparent 32%),
+    linear-gradient(135deg,#130c15 0%,#090910 55%,#120b16 100%);
+  animation:bgMove 14s ease-in-out infinite alternate;
+}
+@keyframes bgMove{
+  from{transform:scale(1) translate3d(0,0,0)}
+  to{transform:scale(1.08) translate3d(1%,-1%,0)}
+}
+
+.glow{
+  position:fixed;
+  width:260px;height:260px;border-radius:50%;
+  filter:blur(70px);opacity:.16;z-index:-2;
+  background:#d477a8;
+  animation:floatGlow 8s ease-in-out infinite;
+}
+.glow.one{left:-100px;top:8%}
+.glow.two{right:-100px;bottom:4%;background:#8067dc;animation-delay:-4s}
+@keyframes floatGlow{
+  50%{transform:translate(25px,-25px) scale(1.08)}
+}
+
+.noise{
+  position:fixed;inset:0;z-index:-1;opacity:.025;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{
+  min-height:100svh;
+  min-height:100dvh;
+  width:100%;
+  display:grid;
+  place-items:center;
+  padding:
+    max(20px,env(safe-area-inset-top))
+    max(18px,env(safe-area-inset-right))
+    max(20px,env(safe-area-inset-bottom))
+    max(18px,env(safe-area-inset-left));
+}
+
+.card{
+  width:min(560px,100%);
+  max-height:calc(100svh - 40px);
+  padding:clamp(28px,6vw,52px) clamp(20px,7vw,46px) 24px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:32px;
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.035));
+  backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
+  box-shadow:0 35px 100px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.07);
+  position:relative;
+  overflow:hidden;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  top:-150px;right:-90px;
+  border-radius:50%;
+  background:rgba(245,193,218,.11);
+  filter:blur(10px);
+  pointer-events:none;
+}
+
+.top-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#eab4d0;
+  margin:0 auto 18px;
+  box-shadow:0 0 18px #eab4d0;
+}
+
+.eyebrow{
+  font-size:clamp(9px,2.2vw,11px);
+  letter-spacing:clamp(2px,1vw,3.5px);
+  text-transform:uppercase;
+  color:#c9a9ba;
+  margin-bottom:20px;
+  font-weight:600;
+}
+
+h1{
+  font:700 clamp(42px,11vw,76px)/.95 'Playfair Display',Georgia,serif;
+  letter-spacing:-2.5px;
+  margin:0;
+}
+h1 span{font-style:italic;color:#edbfd5}
+
+.sub{
+  color:#b9b2c0;
+  line-height:1.7;
+  font-size:clamp(14px,3.5vw,16px);
+  margin:20px auto 30px;
+  max-width:410px;
+}
+
+.btn{
+  appearance:none;
+  border:0;
+  border-radius:999px;
+  min-height:52px;
+  padding:14px 24px;
+  font-weight:700;
+  font-size:14px;
+  color:#1a0d15;
+  background:linear-gradient(135deg,#f7d7e5,#eeb8d2);
+  cursor:pointer;
+  box-shadow:0 12px 35px rgba(232,169,202,.22);
+  transition:transform .22s ease,box-shadow .22s ease,filter .22s ease;
+  touch-action:manipulation;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 18px 45px rgba(232,169,202,.35);filter:brightness(1.03)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:4px}
+
+.scene{
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:8px 0;
+}
+
+.line{
+  font-size:clamp(13px,3.5vw,15px);
+  color:#aaa3b1;
+  margin:7px 0;
+  opacity:0;
+  transform:translateY(9px);
+  transition:opacity .65s ease,transform .65s ease;
+}
 .line.show{opacity:1;transform:none}
-.quote{font:600 22px/1.4 'Playfair Display',serif;margin:12px 0 24px;display:none}
-.btn{appearance:none;border:0;border-radius:999px;padding:15px 25px;font-weight:700;font-size:15px;color:#160d14;background:#f3c7dc;cursor:pointer;box-shadow:0 12px 35px #e8a9ca33;transition:.25s}
-.btn:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 16px 45px #e8a9ca55}
-.btn:active{transform:scale(.98)}
-.small{font-size:11px;color:#6f6874;margin-top:22px}
-.heart{position:fixed;font-size:18px;animation:rise 4s ease-out forwards;pointer-events:none}
-@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
-.fade{animation:fade .8s ease both}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.quote{
+  font:600 clamp(20px,5vw,25px)/1.45 'Playfair Display',Georgia,serif;
+  margin:16px auto 24px;
+  max-width:420px;
+  color:#f7e7ee;
+  display:none;
+}
+
+.fade{animation:fade .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fade{
+  from{opacity:0;transform:translateY(14px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+
 .hide{display:none!important}
+
+.small{
+  font-size:10px;
+  color:#6e6875;
+  margin-top:22px;
+  letter-spacing:.15px;
+}
+
+.progress{
+  height:2px;
+  width:min(220px,70%);
+  margin:0 auto 24px;
+  background:rgba(255,255,255,.08);
+  border-radius:20px;
+  overflow:hidden;
+}
+.progress i{
+  display:block;width:0;height:100%;
+  background:#e8b7d0;
+  transition:width 3.2s cubic-bezier(.2,.8,.2,1);
+}
+.progress.go i{width:100%}
+
+.heart{
+  position:fixed;
+  z-index:10;
+  pointer-events:none;
+  font-size:clamp(14px,4vw,22px);
+  animation:rise 4.8s cubic-bezier(.15,.7,.25,1) forwards;
+}
+@keyframes rise{
+  0%{transform:translate3d(0,20px,0) scale(.5) rotate(0);opacity:0}
+  15%{opacity:1}
+  100%{transform:translate3d(var(--drift),-110vh,0) scale(1.2) rotate(30deg);opacity:0}
+}
+
+.spark{
+  position:absolute;
+  width:3px;height:3px;border-radius:50%;
+  background:#f2c9dc;
+  box-shadow:0 0 14px #f2c9dc;
+  animation:spark 3.5s ease-in-out infinite;
+  opacity:.45;
+}
+@keyframes spark{50%{transform:translateY(-18px) scale(1.6);opacity:.9}}
+
 #yes{display:none;margin-top:5px}
+
+@media (max-width:600px){
+  .card{
+    border-radius:26px;
+    max-height:calc(100svh - 28px);
+    padding-top:32px;
+    padding-bottom:20px;
+  }
+  h1{letter-spacing:-1.8px}
+  .scene{min-height:205px}
+  .small{margin-top:18px}
+}
+
+@media (max-height:650px){
+  .card{padding-top:22px;padding-bottom:16px}
+  .top-dot{margin-bottom:10px}
+  .eyebrow{margin-bottom:12px}
+  .sub{margin:13px auto 18px}
+  .scene{min-height:165px}
+  .small{margin-top:12px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="bg"></div><div class="noise"></div>
+<div class="bg"></div>
+<div class="glow one"></div>
+<div class="glow two"></div>
+<div class="noise"></div>
+
 <main class="wrap">
 <section class="card" id="card">
-  <div class="eyebrow">a very small website for a very important person</div>
+
+  <i class="spark" style="left:16%;top:18%;animation-delay:-1s"></i>
+  <i class="spark" style="right:18%;top:27%;animation-delay:-2.2s"></i>
+  <i class="spark" style="left:24%;bottom:20%;animation-delay:-.4s"></i>
+
+  <div class="top-dot"></div>
+  <div class="eyebrow">a little something for you</div>
+
   <div id="intro">
     <h1>Hey, <span>Anushka</span>.</h1>
-    <p class="sub">I could have typed “sorry” on WhatsApp.<br>
-    But honestly… you deserved a little more effort than that.</p>
-    <button class="btn" id="open">I made something for you →</button>
+    <p class="sub">
+      I could have just typed “sorry” on WhatsApp.<br>
+      But you deserved a little more effort than that.
+    </p>
+    <button class="btn" id="open">I made something for you&nbsp; →</button>
   </div>
 
   <div id="story" class="hide">
-    <div class="scene">
+
+    <div class="progress" id="progress"><i></i></div>
+
+    <div class="scene" id="scene">
       <div class="line">I replayed what happened.</div>
       <div class="line">Then I replayed it again.</div>
-      <div class="line">And unfortunately…</div>
-      <div class="line">the developer has identified the bug. 😭</div>
-      <div class="quote" id="quote">“I was wrong. I'm genuinely sorry, Anushka.”</div>
+      <div class="line">And honestly…</div>
+      <div class="line">I know I could've handled it better. 🥲</div>
+      <div class="quote" id="quote">
+        “I was wrong.<br>
+        I'm genuinely sorry, Anushka.”
+      </div>
     </div>
+
     <button class="btn" id="continue">Continue</button>
+
     <div id="yes">
       <button class="btn" id="forgive">♡ Okay, I accept the apology</button>
     </div>
+
   </div>
-  <div class="small">No frameworks were harmed while making this apology.</div>
+
+  <div class="small">Made with a little code & a lot of sincerity.</div>
 </section>
 </main>
-<script>
-const intro=document.getElementById('intro'),story=document.getElementById('story');
-const open=document.getElementById('open'),cont=document.getElementById('continue');
-const quote=document.getElementById('quote'),yes=document.getElementById('yes');
 
-open.onclick=()=>{
- intro.classList.add('hide'); story.classList.remove('hide'); story.classList.add('fade');
- const lines=[...document.querySelectorAll('.line')];
- lines.forEach((x,i)=>setTimeout(()=>x.classList.add('show'),500+i*650));
- setTimeout(()=>cont.textContent='Okay… I mean it →',3100);
-};
-cont.onclick=()=>{
- [...document.querySelectorAll('.line')].forEach(x=>x.classList.remove('show'));
- cont.classList.add('hide'); quote.style.display='block'; quote.classList.add('fade'); yes.style.display='block';
-};
-document.getElementById('forgive').onclick=()=>{
- story.innerHTML=`<div class="fade">
-   <div class="eyebrow">status update</div>
-   <h1>Thank you,<br><span>Anushka.</span> ♡</h1>
-   <p class="sub">Apology successfully delivered.<br>I'll do better. Promise.</p>
-   <button class="btn" onclick="location.reload()">Replay this little thing</button>
- </div>`;
- for(let i=0;i<55;i++){
-  const h=document.createElement('div');h.className='heart';h.textContent=['♡','♥','✦','❤'][Math.floor(Math.random()*4)];
-  h.style.left=Math.random()*100+'vw';h.style.top=(75+Math.random()*25)+'vh';
-  h.style.animationDelay=Math.random()*1.4+'s';document.body.appendChild(h);
-  setTimeout(()=>h.remove(),5500);
- }
-};
+<script>
+const intro = document.getElementById('intro');
+const story = document.getElementById('story');
+const open = document.getElementById('open');
+const cont = document.getElementById('continue');
+const quote = document.getElementById('quote');
+const yes = document.getElementById('yes');
+const progress = document.getElementById('progress');
+
+open.addEventListener('click', () => {
+  intro.classList.add('hide');
+  story.classList.remove('hide');
+  story.classList.add('fade');
+
+  setTimeout(() => progress.classList.add('go'), 80);
+
+  const lines = [...document.querySelectorAll('.line')];
+  lines.forEach((line, i) => {
+    setTimeout(() => line.classList.add('show'), 400 + i * 650);
+  });
+
+  setTimeout(() => {
+    cont.textContent = 'Okay… I mean it →';
+  }, 3100);
+});
+
+cont.addEventListener('click', () => {
+  document.querySelectorAll('.line').forEach(line => line.classList.remove('show'));
+  cont.classList.add('hide');
+  progress.classList.remove('go');
+  quote.style.display = 'block';
+  quote.classList.add('fade');
+  yes.style.display = 'block';
+});
+
+document.getElementById('forgive').addEventListener('click', () => {
+  story.innerHTML = `
+    <div class="fade">
+      <div class="eyebrow">status update</div>
+      <h1>Thank you,<br><span>Anushka.</span> ♡</h1>
+      <p class="sub">
+        Apology successfully delivered.<br>
+        I'll do better. Promise.
+      </p>
+      <button class="btn" onclick="location.reload()">↻ Replay this little thing</button>
+    </div>
+  `;
+
+  for(let i=0;i<65;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.textContent=['♡','♥','✦','❤','·'][Math.floor(Math.random()*5)];
+    h.style.left=Math.random()*100+'vw';
+    h.style.top=(82+Math.random()*18)+'vh';
+    h.style.setProperty('--drift',(Math.random()*160-80)+'px');
+    h.style.animationDelay=(Math.random()*1.5)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+});
 </script>
 </body>
 </html>
